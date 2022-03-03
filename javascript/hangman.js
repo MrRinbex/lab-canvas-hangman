@@ -40,7 +40,12 @@ class Hangman {
   }
 
   checkWinner() {
-    return !this.checkGameOver ? false : true  
+    let arrIndex = this.guessedLetters.length
+
+    if(!this.checkGameOver() && this.guessedLetters.includes(this.guessedLetters[arrIndex]))
+    return true
+    else
+    return false
   }
 }
 
@@ -53,10 +58,9 @@ if (startGameButton) {
     hangman = new Hangman(['node', 'javascript', 'react', 'miami', 'paris', 'amsterdam', 'lisboa']);
 
     // HINT (uncomment when start working on the canvas portion of the lab)
-    // hangman.secretWord = hangman.pickWord();
-    // hangmanCanvas = new HangmanCanvas(hangman.secretWord);
-
-    // ... your code goes here
+    hangman.secretWord = hangman.pickWord();
+    hangmanCanvas = new HangmanCanvas(hangman.secretWord);
+    hangmanCanvas.createBoard()
   });
 }
 
